@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/cantine.dart';
+import '../models/cantine.dart';
 import 'styles.dart';
 
 class CantineDetail extends StatelessWidget {
