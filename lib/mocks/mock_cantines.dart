@@ -18,7 +18,7 @@ class MockCantines extends Cantine {
     ),
     Cantine(
         name: 'Mensateria Ohm',
-        subtitle: 'Mensa an der TH Nürnberg',
+        subtitle: 'Mensa an der TH Nürnberg (Ohm)',
         city: 'Nürnberg',
         url:
             'http://www.werkswelt.de/data/uploads/gastronomie/slideshows/hg-mensa-ohm.jpg',
