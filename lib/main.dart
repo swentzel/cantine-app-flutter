@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'models/cantine.dart';
 import 'views/cantine_list.dart';
-import 'mocks/mock_cantines.dart';
+// import 'mocks/mock_cantines.dart';
 
-void main() {
+void main() async {
   // final mockCantine = MockCantine.fetchAny();
-  final mockCantines = MockCantines.fetchAll();
+  // final mockCantines = MockCantines.fetchAll();
+
+  final cantines = await Cantine.fetchAll();
 
   // return runApp(MaterialApp(home: CantineDetail(mockCantine)));
-    return runApp(MaterialApp(home: CantineList(mockCantines)));
+    return runApp(MaterialApp(home: CantineList(cantines)));
 }

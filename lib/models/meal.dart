@@ -1,10 +1,10 @@
 
 class Meal {
   final String name;
-  final String descritpion;
+  final String description;
   final int price;
   
-  Meal({this.name, this.descritpion, this.price});
+  Meal({this.name, this.description, this.price});
   
   
 }
