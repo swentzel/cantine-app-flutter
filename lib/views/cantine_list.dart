@@ -20,7 +20,7 @@ class CantineList extends StatelessWidget {
               leading: _itemThumbnail(this.cantines[index]),
               title: _itemTitle(this.cantines[index]),
               subtitle: _itemSubtitle(this.cantines[index]),
-              onTap: () => _navigateToCantineDetail(context, this.cantines[index]);
+              onTap: () => _navigateToCantineDetail(context, this.cantines[index])
             );
           }),
     );
