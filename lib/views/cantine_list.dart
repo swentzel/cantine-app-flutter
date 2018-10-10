@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'models/cantine.dart';
+import '../models/cantine.dart';
+import './cantine_detail.dart';
 import 'styles.dart';
 
 class CantineList extends StatelessWidget {
@@ -19,9 +20,18 @@ class CantineList extends StatelessWidget {
               leading: _itemThumbnail(this.cantines[index]),
               title: _itemTitle(this.cantines[index]),
               subtitle: _itemSubtitle(this.cantines[index]),
+              onTap: () => _navigateToCantineDetail(context, this.cantines[index]);
             );
           }),
     );
+  }
+
+  void _navigateToCantineDetail(BuildContext context, Cantine cantine) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CantineDetail(cantine),
+        ));
   }
 
   Widget _itemThumbnail(Cantine cantine) {

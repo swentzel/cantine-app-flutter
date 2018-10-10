@@ -6,7 +6,7 @@ class Cantine {
   final String subtitle;
   final String city;
   
-  final List<Meal> meals;
+  List<Meal> meals;
   // Cantine({this.name, this.url, this.facts});
   
   Cantine({this.name, this.subtitle, this.city, this.url});
