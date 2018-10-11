@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/meal.dart';
 import 'styles.dart';
 
@@ -12,27 +13,59 @@ class MealList extends StatelessWidget {
     // TODO: implement build
   }
 
-  List<Widget> renderMealList(BuildContext context, List<Meal> meals) {
-    var list = List<Widget>();
-    for (int i = 0; i < meals.length; i++) {
-      list.add(_sectionTitle(meals[i].name));
-      list.add(_sectionText(meals[i].description));
-    }
-    return list;
+  ListView renderMealList(BuildContext context, List<Meal> meals) {
+
+    var listView = new ListView.builder(
+      padding: new EdgeInsets.all(8.0),
+      itemCount: meals.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(
+          leading: _mealAvatar(meals[index].url),
+          title: _mealTitle(meals[index].name),
+          subtitle: _mealTileText(meals[index].description, meals[index].price),
+        );
+      },
+    );
+
+    return listView;
   }
 
-  Widget _sectionTitle(String text) {
+  Widget _mealTitle(String text) {
     return Container(
-        padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 10.0),
+        padding: EdgeInsets.fromLTRB(0.0, 25.0, 5.0, 0.0),
         child:
-            Text(text, textAlign: TextAlign.left, style: Styles.headerLarge));
+            Text(text, textAlign: TextAlign.left, style: Styles.textListTitel));
   }
 
-  Widget _sectionText(String text) {
-    return Container(
-        padding: EdgeInsets.fromLTRB(25.0, 15.0, 25.0, 15.0),
-        child: Text(text, style: Styles.textDefault));
+  Widget _mealTileText(String description, double price) {
+    final formatCurrency = new NumberFormat.simpleCurrency(locale: "de_DE", name: "EUR");
+
+    Row row = new Row(
+      children: <Widget>[
+        new Expanded(
+          child: new Text(description, style: Styles.textDefault),
+        ),
+        new Expanded(
+          child: new Text(formatCurrency.format(price), textAlign: TextAlign.right),
+        ),
+      ],
+
+    );
+    return row;
   }
+
+  Widget _mealAvatar(String mealAvatarUrl) {
+    
+    if(mealAvatarUrl.isNotEmpty) {
+      return new CircleAvatar(
+        backgroundImage: new NetworkImage(mealAvatarUrl),
+      );
+    } else {
+      return Icon(Icons.fastfood);
+    }
+    
+    
+  } 
 
   
 }

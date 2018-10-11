@@ -13,26 +13,16 @@ class CantineDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mockMeals = MockMeals.fetchAll();
     return Scaffold(
         appBar: AppBar(title: Text(cantine.name, style: Styles.navBarTitle)),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: _renderBody(context, cantine),
-        ));
+        body: _renderMeals(context, mockMeals)
+    );
   }
 
-  List<Widget> _renderBody(BuildContext context, Cantine cantine) {
-    var result = List<Widget>();
-
-    final mockMeals = MockMeals.fetchAll();
-
-    result.add(_bannerImage(cantine.url, 170.0));
-    result.addAll(_renderMeals(context, mockMeals));
-    return result;
-  }
-
-  List<Widget> _renderMeals(BuildContext context, List<Meal> meals) {
+  
+  
+  ListView _renderMeals(BuildContext context, List<Meal> meals) {
     MealList mealList = new MealList(meals);
 
     return mealList.renderMealList(context, meals);
