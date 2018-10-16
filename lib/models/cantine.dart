@@ -29,6 +29,7 @@ class Cantine {
     }
     List<Cantine> list = new List<Cantine>();
     for (var jsonItem in json.decode(resp.body)) {
+      
       list.add(Cantine.fromJson(jsonItem));
     }
     return list;
