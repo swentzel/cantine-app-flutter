@@ -76,7 +76,7 @@ class MealList extends StatelessWidget {
       priceString = priceString + " / " + formatBitcoin.format(bcPrice) + " BTC";
     }
 
-    return new Text(priceString, textAlign: TextAlign.right),
+    return new Text(priceString, textAlign: TextAlign.right);
 
   }
 
