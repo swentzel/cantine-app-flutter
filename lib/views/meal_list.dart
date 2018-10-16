@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../globals.dart';
 import '../models/meal.dart';
 import 'styles.dart';
 
@@ -38,15 +39,14 @@ class MealList extends StatelessWidget {
   }
 
   Widget _mealTileText(String description, double price) {
-    final formatCurrency = new NumberFormat.simpleCurrency(locale: "de_DE", name: "EUR");
 
     Row row = new Row(
       children: <Widget>[
         new Expanded(
           child: new Text(description, style: Styles.textDefault),
         ),
-        new Expanded(
-          child: new Text(formatCurrency.format(price), textAlign: TextAlign.right),
+        new Container(
+          child: _mealPrice(price)
         ),
       ],
 
@@ -63,9 +63,22 @@ class MealList extends StatelessWidget {
     } else {
       return Icon(Icons.fastfood);
     }
-    
-    
   } 
+
+  Widget _mealPrice(double price) {
+    final formatCurrency = new NumberFormat.simpleCurrency(locale: "de_DE", name: "EUR");
+    final formatBitcoin = new NumberFormat("0.00000");
+
+    String priceString = formatCurrency.format(price);
+
+    if(bitcoin.exRateAvailable) {
+      double bcPrice = price / bitcoin.exRateBitcoinEuro;
+      priceString = priceString + " / " + formatBitcoin.format(bcPrice) + " BTC";
+    }
+
+    return new Text(priceString, textAlign: TextAlign.right),
+
+  }
 
   
 }
